@@ -1,0 +1,6 @@
+= The Nerdery's Android Code Standards
+v1.0, 2017-5-16
+include::include.adoc[]
+
+* <<project-standards.adoc#,Nerdery Project Standards>>
+* <<code-style.adoc#,Nerdery File Naming Guidelines and Code Style Standards>>

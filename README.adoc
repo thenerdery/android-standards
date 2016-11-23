@@ -1,0 +1,23 @@
+= Android Standards Repo
+
+This is a single place for all our Android Standards to live and grow.
+To make a change or suggest an edit to these standards please fork this
+repository and create a pull request. To discuss possible changes please
+create an issue.
+
+== code-style
+
+Contains Android Studio code style templates and an install script for copying them
+to your Android Studio or IntelliJ config directory. See the
+link:code-style/README.adoc[README] for more info.
+
+== standards
+
+Living documents which demonstrate best practices for The Nerdery's Android
+discipline. See them link:standards/index.adoc[here].
+
+== License
+
+image:https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png["Creative Commons License", link="LICENSE"]
+
+This work is licensed under a link:LICENSE[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License]

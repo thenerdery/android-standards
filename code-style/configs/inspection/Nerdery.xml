@@ -1,0 +1,5 @@
+<inspections profile_name="Nerdery" version="1.0">
+  <option name="myName" value="Nerdery" />
+  <inspection_tool class="FallthruInSwitchStatement" enabled="true" level="ERROR" enabled_by_default="true" />
+  <inspection_tool class="UnnecessarySemicolon" enabled="true" level="ERROR" enabled_by_default="true" />
+</inspections>
