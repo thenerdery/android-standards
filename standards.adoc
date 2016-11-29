@@ -1,0 +1,85 @@
+= Android Project Standards
+v0.1, 2016-11-29
+
+This document is a work in progress.
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in
+https://www.ietf.org/rfc/rfc2119.txt[RFC 2119].
+
+= Git
+
+= README
+
+Every project MUST have a README file. The README MUST be a text file, this
+file MAY use a markup language as long as it is easy to read with out the use
+of a text processor. For example; plain text (.txt),
+https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html[markdown] (.md), or
+http://asciidoctor.org/[asciidoctor] (.adoc) would all be fine choices.
+
+The README should contain all information possible about the project. It should
+be the source of truth that will allow a developer to easily find anything
+they need to know about the project. This should include but not limited to
+links to JIRA, git, bamboo, documentation on how set up the project, and how
+to release the project.
+
+The following README template SHOULD be used for projects.
+
+[README.md]
+```
+# Project Name
+
+## Important Project links
+
+<!--
+Place important project links here, anything and everything that is related to
+this project should be documented here.
+-->
+
+- [Project Page](https://mainframe.nerdery.com/project/page)
+- [Source](https://git.nerdery.com/projects/PROJ/repos/cool.project/browse)
+- [JIRA](https://issues.nerdery.com/projects/PROJ/summary)
+- [Bamboo](https://builds.nerderylabs.com/browse/PROJ)
+- [Buddy Build](https://dashboard.buddybuild.com/apps/1e5f9410f32f459aa9c3ca72a52cf6c1)
+- [Fabric](https://fabric.io/android/apps/cool.project/)
+- [Firebase](https://console.firebase.google.com/project/cool-project/overview)
+- [Play Store](https://play.google.com/store/apps/details?id=cool.project.android)
+- [Notes and Wires](https://drive.google.com/drive/u/1/folders/0B5j3shyAKaAnRks4b1hNY2kxWUE)
+
+## Build Types
+<!--
+Give each build variant / flavor a different section here. Explain what each
+does, why one would use it, what features each has, links to associated
+services (ie. crashlytics, firebase), which should be given to clients, and what
+signing keys are used.
+-->
+
+## Project Setup
+<!--
+Describe step by step setup and any dependancies that are required and
+their setup as well.
+-->
+
+## In Scope Devices
+<!--
+List out devices that are in scope here.
+-->
+
+## Contributing
+<!--
+Include any special requirements for contributing to the project. Are there
+special style guides that must be followed? Is there a different flow for
+doing pull requests. Anything
+-->
+```
+
+NOTE: The above is a guideline for creating a good README, but anything that
+is though to be useful in a README should be included. Anything that differs
+from standard operating procedure SHOULD be included.
+
+= Testing
+
+= CI
+
+= Logging
