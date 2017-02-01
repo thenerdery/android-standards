@@ -10,6 +10,89 @@ https://www.ietf.org/rfc/rfc2119.txt[RFC 2119].
 
 = Git
 
+== Location and Naming
+
+The Nerdery SHALL use git, specifically bitbucket for all projects, unless otherwise
+requested by a client. Projects MUST be placed under the client they are for
+and project names MUST be written in the form of `mobile.{appName}.android` or
+if a library `mobile.library.android.{libraryName}`. For example, the Hy-Vee
+flagship application is named `mobile.flagship.android`. This convention is in
+place so there is not confusion among the many projects that can be under a client
+in BitBucket.
+
+== Branching
+
+The master branch is where the most up to date work is held. In the past a develop
+branch has been recommend, but this has shown to cause confusion and many times
+extra work being done, due to merges into the wrong branch. The master branch
+MUST house the most up to date code, and all other branches be created from
+master.
+
+All work for a project MUST be completed on a separate branch. The branch SHALL
+be named something descriptive about the work being done in the project.
+
+To get the branch merged into the master branch a pull request SHALL be done
+through the BitBucket UI and be reviewed by at least one other developer. The
+reviewer SHOULD be the lead developer, unless they delegate this task out to
+other team members. Consult with your lead for guidance on how they would like
+the review process to go.
+
+In addition to having a review, the branch MUST pass a merge build from CI.
+This is a build that confirms that the code once merged into master will not
+break the build.
+
+== Forking
+
+Although not required, it is RECOMMENDED to fork repositories under your user
+account. This helps prevent clutter and reduces work for other developers trying
+to always figure out what branches can and should be deleted. Under your own
+fork you are in charge of all the branches and can delete and save them as you
+see fit.
+
+If using a fork you MUST set the 'Repository permissions' to allow the production
+group to read. This allows any developer to access and see what you are working
+on. Just in case you for get to create a PR before you go on vacation.
+
+== Releases
+
+All release builds MUST be tagged. The proper format for a tag would be
+`v{major}.{minor}.{patch}`. Don't forget to push these to the remote (BitBucket).
+
+An example would be:
+```
+git tag -a v1.0.0 # -a is not required but RECOMMENDED
+git push origin v1.0.0
+```
+
+It is RECOMMENDED that before a release a release branch is made, so that bug
+fixes can be merged into the release branch while new features can be included
+in master.
+
+== Commit History
+
+=== Commit Message
+
+We will follow ['The seven rules of a great Git commit message'](http://chris.beams.io/posts/git-commit/)
+
+1. Separate subject from body with a blank line
+1. Limit the subject line to 50 characters
+1. Capitalize the subject line
+1. Do not end the subject line with a period
+1. Use the imperative mood in the subject line
+1. Wrap the body at 72 characters
+1. Use the body to explain what and why vs. how
+
+When creating commit messages.
+
+=== Clean History
+
+To keep a clean commit history, which makes reviewing pull requests, and
+rewinding code a much easier process. Commits on branches should be complete,
+that is build, as well as follow The Seven Rules described above. The RECOMMENDED
+solution to achieve this where many commits have been made during the
+development process, is to use rebase to re-write history. Specifically use the
+squash command.
+
 = README
 
 Every project MUST have a README file. The README MUST be a text file, this
