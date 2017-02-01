@@ -1,7 +1,7 @@
 = Android Project Standards
-v0.1, 2016-11-29
+v1.0, 2017-2-1
 
-This document is a work in progress.
+This is a living document. To request changes, please open a pull request.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
@@ -12,28 +12,27 @@ https://www.ietf.org/rfc/rfc2119.txt[RFC 2119].
 
 == Location and Naming
 
-The Nerdery SHALL use git, specifically bitbucket for all projects, unless otherwise
+The Nerdery SHALL use git, specifically BitBucket Server for all projects unless otherwise
 requested by a client. Projects MUST be placed under the client they are for
 and project names MUST be written in the form of `mobile.{appName}.android` or
-if a library `mobile.library.android.{libraryName}`. For example, the Hy-Vee
+if a library project `mobile.library.android.{libraryName}`. For example, the Hy-Vee
 flagship application is named `mobile.flagship.android`. This convention is in
-place so there is not confusion among the many projects that can be under a client
+place so there is not confusion among the many projects that can be listed under a client
 in BitBucket.
 
 == Branching
 
-The master branch is where the most up to date work is held. In the past a develop
-branch has been recommend, but this has shown to cause confusion and many times
-extra work being done, due to merges into the wrong branch. The master branch
-MUST house the most up to date code, and all other branches be created from
-master.
+The **master** branch is where the most up to date work are held. In the past, a develop
+branch had been used, but this has shown to cause confusion and many times
+resulted in extra work being done. The master branch MUST house the most up
+to date code, and all other branches are created from master.
 
 All work for a project MUST be completed on a separate branch. The branch SHALL
 be named something descriptive about the work being done in the project.
 
 To get the branch merged into the master branch a pull request SHALL be done
 through the BitBucket UI and be reviewed by at least one other developer. The
-reviewer SHOULD be the lead developer, unless they delegate this task out to
+reviewer SHOULD be the lead developer unless they delegate this task out to
 other team members. Consult with your lead for guidance on how they would like
 the review process to go.
 
@@ -46,17 +45,22 @@ break the build.
 Although not required, it is RECOMMENDED to fork repositories under your user
 account. This helps prevent clutter and reduces work for other developers trying
 to always figure out what branches can and should be deleted. Under your own
-fork you are in charge of all the branches and can delete and save them as you
+fork, you are in charge of all the branches and can delete and save them as you
 see fit.
 
-If using a fork you MUST set the 'Repository permissions' to allow the production
+IMPORTANT: If using a fork you MUST set the 'Repository permissions' to allow the production
 group to read. This allows any developer to access and see what you are working
-on. Just in case you for get to create a PR before you go on vacation.
+on. Just in case you forget to create a PR before you go on vacation.
 
 == Releases
 
+NOTE: A release is defined as the code that is currently or soon to be in the
+Play Store.
+
 All release builds MUST be tagged. The proper format for a tag would be
-`v{major}.{minor}.{patch}`. Don't forget to push these to the remote (BitBucket).
+`v{major}.{minor}.{patch}`.
+
+TIP: Don't forget to push the tags to the remote (BitBucket).
 
 An example would be:
 ```
@@ -64,15 +68,16 @@ git tag -a v1.0.0 # -a is not required but RECOMMENDED
 git push origin v1.0.0
 ```
 
-It is RECOMMENDED that before a release a release branch is made, so that bug
-fixes can be merged into the release branch while new features can be included
-in master.
+It is RECOMMENDED that before creating a release, a release branch is created,
+so that bug fixes can be merged into the release branch while new features can
+be included in master. The release branch name SHOULD be
+`release-{major}.{minor}.{patch}`
 
 == Commit History
 
 === Commit Message
 
-We will follow ['The seven rules of a great Git commit message'](http://chris.beams.io/posts/git-commit/)
+We will follow http://chris.beams.io/posts/git-commit/['The seven rules of a great Git commit message']
 
 1. Separate subject from body with a blank line
 1. Limit the subject line to 50 characters
@@ -87,8 +92,8 @@ When creating commit messages.
 === Clean History
 
 To keep a clean commit history, which makes reviewing pull requests, and
-rewinding code a much easier process. Commits on branches should be complete,
-that is build, as well as follow The Seven Rules described above. The RECOMMENDED
+rewinding code a much easier process, commits on branches should be complete,
+that is built, as well as follow The Seven Rules described above. The RECOMMENDED
 solution to achieve this where many commits have been made during the
 development process, is to use rebase to re-write history. Specifically use the
 squash command.
@@ -96,15 +101,15 @@ squash command.
 = README
 
 Every project MUST have a README file. The README MUST be a text file, this
-file MAY use a markup language as long as it is easy to read with out the use
+file MAY use a markup language as long as it is easy to read without the use
 of a text processor. For example; plain text (.txt),
 https://confluence.atlassian.com/bitbucketserver/markdown-syntax-guide-776639995.html[markdown] (.md), or
 http://asciidoctor.org/[asciidoctor] (.adoc) would all be fine choices.
 
 The README should contain all information possible about the project. It should
 be the source of truth that will allow a developer to easily find anything
-they need to know about the project. This should include but not limited to
-links to JIRA, git, bamboo, documentation on how set up the project, and how
+they need to know about the project. This should include but is not limited to
+links to JIRA, git, bamboo, documentation on how to set up the project, and how
 to release the project.
 
 The following README template SHOULD be used for projects.
@@ -132,7 +137,7 @@ this project should be documented here.
 
 ## Build Types
 <!--
-Give each build variant / flavor a different section here. Explain what each
+Give each build variant/flavor a different section here. Explain what each
 does, why one would use it, what features each has, links to associated
 services (ie. crashlytics, firebase), which should be given to clients, and what
 signing keys are used.
@@ -140,7 +145,7 @@ signing keys are used.
 
 ## Project Setup
 <!--
-Describe step by step setup and any dependancies that are required and
+Describe step by step setup and any dependencies that are required and
 their setup as well.
 -->
 
@@ -153,12 +158,12 @@ List out devices that are in scope here.
 <!--
 Include any special requirements for contributing to the project. Are there
 special style guides that must be followed? Is there a different flow for
-doing pull requests. Anything
+doing pull requests. Anything else that might be relevant for contributing.
 -->
 ```
 
 NOTE: The above is a guideline for creating a good README, but anything that
-is though to be useful in a README should be included. Anything about a project
+is thought to be useful in a README should be included. Anything about a project
 that differs from standard operating procedure SHOULD be documented in the
 README.
 
@@ -180,18 +185,18 @@ case by case basis to see if they fit for the project.
 = CI
 
 All Android Projects at The Nerdery MUST use CI. Buddy Build is a quick and
-convenient way to set these up with our BitBucket Server.
+a convenient way to set these up with our BitBucket Server.
 
 = Logging
 
 Logging is very important in be able to quickly debug applications. For this
-reason The Nerdery Android Developers have adopted
+the reason The Nerdery Android Developers have adopted
 [Timber](https://github.com/JakeWharton/timber) as the logger of choice.
 Timber allows to quickly log values to different streams instead of just logcat.
 Timber also allows for what type of logging to be easily switched from build
 type to build type.
 
-The Nerdery SHOULD use Timber in all new projects, and is RECOMMENDED to be used
+The Nerdery SHOULD use Timber in all new projects and is RECOMMENDED to be used
 in legacy projects when the legacy project does not have a logging alternative
 to logcat.
 
