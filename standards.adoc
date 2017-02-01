@@ -164,6 +164,19 @@ README.
 
 = Testing
 
+== Unit Testing
+
+Unit Tests SHOULD be implemented for all code that does not have direct dependencies
+on `android` packages and does some amount of work. That is basically any code
+that is not in the views, fragments or activities, should be tested.
+Not having the time to unit test is not a valid excuse for not testing. Time
+is always saved in the long run when testing.
+
+== UI Tests / Functional / Instrumentation Tests
+
+All of these types of testing are RECOMMENDED, but should be considered on a
+case by case basis to see if they fit for the project.
+
 = CI
 
 = Logging
