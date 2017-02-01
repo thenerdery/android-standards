@@ -75,11 +75,28 @@ doing pull requests. Anything
 ```
 
 NOTE: The above is a guideline for creating a good README, but anything that
-is though to be useful in a README should be included. Anything that differs
-from standard operating procedure SHOULD be included.
+is though to be useful in a README should be included. Anything about a project
+that differs from standard operating procedure SHOULD be documented in the
+README.
 
 = Testing
 
 = CI
 
 = Logging
+
+Logging is very important in be able to quickly debug applications. For this
+reason The Nerdery Android Developers have adopted
+[Timber](https://github.com/JakeWharton/timber) as the logger of choice.
+Timber allows to quickly log values to different streams instead of just logcat.
+Timber also allows for what type of logging to be easily switched from build
+type to build type.
+
+The Nerdery SHOULD use Timber in all new projects, and is RECOMMENDED to be used
+in legacy projects when the legacy project does not have a logging alternative
+to logcat.
+
+Release builds MUST NOT log to logcat. This is a security concern as well as a
+performance issue. Logs SHOULD instead be sent to crashlytics, google analytics,
+firebase, loggy, or some other comparable cloud logging option where they can
+be reviewed and used to debug user issues.
