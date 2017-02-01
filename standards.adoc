@@ -179,6 +179,9 @@ case by case basis to see if they fit for the project.
 
 = CI
 
+All Android Projects at The Nerdery MUST use CI. Buddy Build is a quick and
+convenient way to set these up with our BitBucket Server.
+
 = Logging
 
 Logging is very important in be able to quickly debug applications. For this
