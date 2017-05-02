@@ -1,5 +1,8 @@
-= Code guidelines
-include::include.adoc[]
+:sectnums:
+= Code Guidelines
+v1.0, 2017-5-2
+
+These rules will be automatically handled by the link:../code-style/README.adoc[NerderyAndroid] codestyle.
 
 == Java language rules
 
@@ -10,9 +13,11 @@ You must never do the following:
 [source, java]
 ----
 void setServerPort(String value) {
-  try {
-      serverPort = Integer.parseInt(value);
-  } catch (NumberFormatException e) { }
+    try {
+        serverPort = Integer.parseInt(value);
+    } catch (NumberFormatException e) {
+        // ...
+    }
 }
 ----
 
@@ -24,24 +29,24 @@ handling varies depending on the case._ - (https://source.android.com/source/cod
 
 See alternatives https://source.android.com/source/code-style.html=dont-ignore-exceptions[here].
 
-=== Don't catch generic exception
+=== Don't catch a single, generic Exception
 
 You should not do this:
 
 [source, java]
 ----
 try {
-  someComplicatedIOFunction();        // may throw IOException
-  someComplicatedParsingFunction();   // may throw ParsingException
-  someComplicatedSecurityFunction();  // may throw SecurityException
-  // phew, made it all the way
+    someComplicatedIOFunction();        // may throw IOException
+    someComplicatedParsingFunction();   // may throw ParsingException
+    someComplicatedSecurityFunction();  // may throw SecurityException
+    // phew, made it all the way
 } catch (Exception e) {                 // I'll just catch all exceptions
-  handleError();                      // with one generic handler!
+    handleError();                      // with one generic handler!
 }
 ----
 
 See the reason why and some alternatives
-https://source.android.com/source/code-style.html=dont-catch-generic-exception[here]
+https://source.android.com/source/code-style.html=dont-catch-generic-exception[here].
 
 === Don't use finalizers
 
@@ -60,7 +65,7 @@ This is bad: `import foo.*;`
 
 This is good: `import foo.Bar;`
 
-See more info https://source.android.com/source/code-style.html=fully-qualify-imports[here]
+See more info https://source.android.com/source/code-style.html=fully-qualify-imports[here].
 
 == Java style rules
 
@@ -81,13 +86,13 @@ Example:
 [source, java]
 ----
 public class MyClass {
-  public static final int SOME_CONSTANT = 42;
-  private static float sValue; // Contrived but you get the point.
-  private int value;
+    public static final int SOME_CONSTANT = 42;
+    private static float sValue; // Contrived but you get the point.
+    private int value;
 
-  public int getValue() {
-    return value;
-  }
+    public int getValue() {
+        return value;
+    }
 }
 ----
 
@@ -112,21 +117,21 @@ public class MyClass {
 
 === Use spaces for indentation
 
-Use __2 space__ indents for blocks:
+Use __4 space__ indents for blocks:
 
 [source, java]
 ----
 if (x == 1) {
-  x++;
+    x++;
 }
 ----
 
-Use __4 space__ indents for line wraps:
+Use __8 space__ indents for line wraps:
 
 [source, java]
 ----
 Instrument i =
-    someLongExpression(that, wouldNotFit, on, one, line);
+        someLongExpression(that, wouldNotFit, on, one, line);
 ----
 
 === Use standard brace style
@@ -136,27 +141,25 @@ Braces go on the same line as the code before them.
 [source, java]
 ----
 class MyClass {
-  int func() {
-    if (something) {
-      // ...
-    } else if (somethingElse) {
-      // ...
-    } else {
-      // ...
+    int func() {
+        if (something) {
+            // ...
+        } else if (somethingElse) {
+            // ...
+        } else {
+            // ...
+        }
     }
-  }
 }
 ----
 
-Braces around the statements are required unless the condition and the body
-fit on one line.
-
-If the condition and the body fit on one line and that line is shorter than
-the max line length, then braces are not required, e.g.
+Braces around the statements are required.
 
 [source, java]
 ----
-if (condition) body();
+if (condition) {
+    body();
+}
 ----
 
 This is __bad__:
@@ -164,7 +167,7 @@ This is __bad__:
 [source, java]
 ----
 if (condition)
-  body();  // bad!
+    body();  // bad!
 ----
 
 === Annotations
@@ -180,9 +183,9 @@ if you use the `@inheritdocs` Javadoc tag, and derive from a class
 (not an interface), you must also annotate that the method `@Overrides`
 the parent class's method.
 
-* `@SuppressWarnings`: The @SuppressWarnings annotation should only be used
+* `@SuppressWarnings`: The `@SuppressWarnings` annotation should only be used
 under circumstances where it is impossible to eliminate a warning. If a warning
-passes this "impossible to eliminate" test, the @SuppressWarnings annotation
+passes this "impossible to eliminate" test, the ``@SuppressWarnings` annotation
 must be used, so as to ensure that all warnings reflect actual problems in
 the code.
 
@@ -195,13 +198,12 @@ __Classes, Methods and Constructors__
 
 When annotations are applied to a class, method, or constructor, they are
 listed after the documentation block and should appear as
-__one annotation per line__ . If a class, method, or constructor only has a
-single annotation and the line length is less than the maximum allowed, then the
-annotation may be inline with the declaration.
+__one annotation per line__ .
 
 [source, java]
 ----
-@SingleAnnoation public class MySingleAnnotatedClass { }
+@SingleAnnoation
+public class MySingleAnnotatedClass { }
 
 /* This is the documentation block about the class */
 @AnnotationA
@@ -240,16 +242,11 @@ this because your IDE is already obeying these rules. If not, have a look below.
 The ordering of import statements is:
 
 1. Android imports
-2. Imports from third parties (com, junit, net, org)
+2. Imports from third parties (com, net, org)
 3. java and javax
-4. Same project imports
-
-To exactly match the IDE settings, the imports should be:
-
-* Alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
-* There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
-
-More info https://source.android.com/source/code-style.html=limit-variable-scope[here]
+4. junit
+5. Unconventional namespaces (butterknife, dagger, retrofit, etc.)
+6. Static imports
 
 === Logging guidelines
 
@@ -269,7 +266,7 @@ issues:
 To log exceptions use the overloaded versions
 `Timber.*(Throwable t, String message, Object... args)`
 
-All logs to log cat must be turned off for release builds. This can easily be
+All logs to logcat must be turned off for release builds. This can easily be
 done with `Timber.plant(Tree)` method, and only planting the debug tree in
 development builds.
 
@@ -296,24 +293,24 @@ Example:
 ----
 public class MainActivity extends Activity {
 
-  private String title;
-  private TextView textViewTitle;
+    private String title;
+    private TextView textViewTitle;
 
-  @Override public void onCreate() {
-      ...
-  }
+    @Override public void onCreate() {
+        // ...
+    }
 
-  public void setTitle(String title) {
-  	this.title = title;
-  }
+    public void setTitle(String title) {
+    	this.title = title;
+    }
 
-  private void setUpView() {
-      ...
-  }
+    private void setUpView() {
+        // ...
+    }
 
-  static class AnInnerClass {
-
-  }
+    static class AnInnerClass {
+        // ...
+    }
 }
 ----
 
@@ -327,10 +324,10 @@ correct order is:
 ----
 public class MainActivity extends Activity {
 	//Order matches Activity lifecycle
-  @Override public void onCreate() {}
-  @Override public void onResume() {}
-  @Override public void onPause() {}
-  @Override public void onDestroy() {}
+    @Override public void onCreate() { }
+    @Override public void onResume() { }
+    @Override public void onPause() { }
+    @Override public void onDestroy() { }
 }
 ----
 
@@ -359,8 +356,8 @@ Many elements of the Android SDK such as `SharedPreferences`, `Bundle`, or
 `Intent` use a key-value pair approach so it's very likely that even for a
 small app you end up having to write a lot of String constants.
 
-When using one of these components, you __must__ define the keys as a
-`static final` fields and they should be prefixed as indicated below. An
+When using one of these components, you __must__ define the keys as
+constant `static final` fields and they should be prefixed as indicated below. An
 exception to this rule can be made if it is a single one time use key. Such as
 using
 https://github.com/JakeWharton/u2020/blob/master/src/internalDebug/java/com/jakewharton/u2020/data/DebugDataModule.java#L80[RxSharedPreferences with Dagger].
@@ -405,7 +402,7 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 === Arguments in Fragments and Activities
 
-When data is passed into an `Activity `or `Fragment` via an `Intent` or a
+When data is passed into an `Activity` or `Fragment` via an `Intent` or a
 `Bundle`, the keys for the different values __must__ follow the rules described
 in the section above.
 
@@ -446,13 +443,13 @@ exposed outside the class.
 
 === Line length limit
 
-Code lines should not exceed __100 characters__. If the line is longer than
+Code lines should not exceed __120 characters__. If the line is longer than
 this limit there are usually two options to reduce its length:
 
 * Extract a local variable or method (preferable).
 * Apply line-wrapping to divide a single line into multiple ones.
 
-There are two __exceptions__ where it is possible to have lines longer than 100:
+There are two __exceptions__ where it is possible to have lines longer than 120:
 
 * Lines that are not possible to split, e.g. long URLs in comments.
 * `package` and `import` statements.
@@ -529,17 +526,17 @@ Rx chains of operators require line-wrapping. Every operator must go in a new li
 [source, java]
 ----
 public Observable<Location> syncLocations() {
-  return databaseManager.getAllLocations()
-    .concatMap(new Func1<Location, Observable<? extends Location>>() {
-      @Override public Observable<? extends Location> call(Location location) {
-         return retrofitService.getLocation(location.id);
-       }
-    })
-    .retry(new Func2<Integer, Throwable, Boolean>() {
-       @Override public Boolean call(Integer numRetries, Throwable throwable) {
-         return throwable instanceof RetrofitError;
-       }
-    });
+    return databaseManager.getAllLocations()
+            .concatMap(new Func1<Location, Observable<? extends Location>>() {
+                @Override public Observable<? extends Location> call(Location location) {
+                    return retrofitService.getLocation(location.id);
+                }
+            })
+            .retry(new Func2<Integer, Throwable, Boolean>() {
+                @Override public Boolean call(Integer numRetries, Throwable throwable) {
+                    return throwable instanceof RetrofitError;
+                }
+            });
 }
 ----
 
@@ -555,10 +552,10 @@ This is good:
 [source, xml]
 ----
 <TextView
-	android:id="@+id/text_view_profile"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-  />
+    android:id="@+id/text_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
 ----
 
 This is __bad__ :
@@ -569,10 +566,9 @@ This is __bad__ :
 <TextView
     android:id="@+id/text_view_profile"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 </TextView>
 ----
-
 
 === Resources naming
 
@@ -617,10 +613,10 @@ Menu example:
 [source, xml]
 ----
 <menu>
-	<item
-      android:id="@+id/menu_done"
-      android:title="Done"
-      />
+    <item
+        android:id="@+id/menu_done"
+        android:title="Done"
+        />
 </menu>
 ----
 
@@ -671,7 +667,7 @@ way of ordering the most common attributes is:
 Test classes should match the name of the class the tests are targeting,
 followed by `Test`. For example, if creating a test class that contains tests
 for the `DatabaseManager`, it should named `DatabaseManagerTest`. If
-Spock is being used the same rule applies but instead of 'Test', 'Spec' suffix
+Spock is being used the same rule applies but instead of 'Test', the 'Spec' suffix
 should be used instead. Tests should be placed in the same package as the class
 they are testing.
 
@@ -707,4 +703,3 @@ onView(withId(R.id.view))
         .perform(scrollTo())
         .check(matches(isDisplayed()))
 ----
-

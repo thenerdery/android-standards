@@ -13,5 +13,11 @@ link:code-style/README.adoc[code-style/README.adoc] for more info.
 
 == standards
 
-A living document which lists best practices for The Nerdery's Android
-discipline. See link:standards/standards.adoc[standards/standards.adoc] for complete info.
+Living documents which demostrate best practices for The Nerdery's Android
+discipline.
+
+* link:standards/standards.adoc[standards/project-standards.adoc] - Nerdery Project Standards
+
+* link:standards/code-style.adoc[standards/code-style.adoc] - Nerdery Code Guidelines
+
+* link:standards/project-guidelines.adoc[standards/naming-guidelines] - Nerdery Naming Guidelines

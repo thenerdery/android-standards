@@ -1,6 +1,6 @@
 :sectnums:
-
 = Project guidelines
+v1.0, 2017-5-2
 
 == Project structure
 
@@ -175,4 +175,3 @@ these files are already located in the `menu` directory.
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`,
 `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
-
