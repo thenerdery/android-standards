@@ -26,14 +26,6 @@ do
     mkdir -p $i/options
     cp -frv "$CONFIGS/options"/* $i/options
 
-    # Install colors
-    mkdir -p $i/colors
-    cp -frv "$CONFIGS/colors"/* $i/colors
-
-    # Install templates
-    mkdir -p $i/templates
-    cp -frv "$CONFIGS/templates"/* $i/templates
-
   fi
 done
 
