@@ -1,0 +1,8 @@
+<templateSet group="AndroidLog">
+  <template name="timberm" value="Timber.d($content$);" description="Log method name and its arguments" toReformat="false" toShortenFQNames="true">
+    <variable name="content" expression="groovyScript(&quot;def params = _2.collect {it + ' = [%s]'}.join(', '); def params2 = _2.collect {it}.join(', '); return '\&quot;' + _1 + '() called' + (params.empty  ? '' : ' with: ' + params) + '\&quot;' + (params2.empty ? '' : ', ' + params2)&quot;, methodName(), methodParameters())" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_STATEMENT" value="true" />
+    </context>
+  </template>
+</templateSet>
