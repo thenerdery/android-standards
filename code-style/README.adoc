@@ -1,5 +1,5 @@
 = Android Code Styles
-v1.0, 2017-2-1
+v1.0, 2017-5-2
 
 Android Studio code style settings for The Nerdery's Android projects.
 
