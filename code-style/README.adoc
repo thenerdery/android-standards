@@ -11,8 +11,8 @@ Android Studio code style settings for The Nerdery's Android projects.
 
 == Credit
 
-Based on the Android code style customized by [Square](https://github.com/square/java-code-styles).
+Based on the Android code style customized by https://github.com/square/java-code-styles[Square].
 
 == License
 
-[![Public domain](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/legalcode)
+https://creativecommons.org/publicdomain/zero/1.0/legalcode[image:https://licensebuttons.net/p/zero/1.0/88x31.png[Public Domain]]
