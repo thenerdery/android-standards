@@ -1,9 +1,11 @@
 #!/bin/bash
-# Installs The Nerdery's IntelliJ configs into your user configs.
+# Installs The Nerdery's Android Studio configs into your user configs.
 
-echo "Installing Nerdery IntelliJ configs..."
+echo "Installing Nerdery Android Studio configs..."
 
 CONFIGS="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/configs"
+# escape spaces in path
+CONFIGS=$(echo $CONFIGS | sed 's/ /\\ /g')
 
 for i in $HOME/Library/Preferences/IntelliJIdea*  \
          $HOME/Library/Preferences/IdeaIC*        \
@@ -31,4 +33,4 @@ done
 
 echo "Done."
 echo ""
-echo "Restart IntelliJ and/or AndroidStudio, go to preferences, and apply 'NerderyAndroid'."
+echo "Restart Android Studio, go to preferences, and apply 'NerderyAndroid'."
