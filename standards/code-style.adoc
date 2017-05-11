@@ -233,19 +233,6 @@ method needs to be called. See `InputStream` for an example. In this case it is
 appropriate but not required to print a short log message from the finalizer,
 as long as it is not expected to flood the logs._ (https://source.android.com/source/code-style.html=dont-use-finalizers[Android code style guidelines])
 
-
-=== Fully qualify imports
-
-|===
-| Good | Bad
-
-|`import foo.Bar;`
-|`import foo.*;`
-
-|===
-
-See more info https://source.android.com/source/code-style.html=fully-qualify-imports[here].
-
 == Java style rules
 
 === Fields definition and naming
@@ -411,6 +398,18 @@ _Local variables should be declared at the point they are first used. Nearly
 every local variable declaration should contain an initializer. If you don't
 yet have enough information to initialize a variable sensibly, you should
 postpone the declaration until you do._ (https://source.android.com/source/code-style.html=limit-variable-scope[Android code style guidelines])
+
+=== Fully qualify imports
+
+|===
+| Good | Bad
+
+|`import foo.Bar;`
+|`import foo.*;`
+
+|===
+
+See more info https://source.android.com/source/code-style.html=fully-qualify-imports[here].
 
 === Order import statements
 
