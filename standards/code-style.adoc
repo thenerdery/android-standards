@@ -2,8 +2,6 @@
 = Code Guidelines
 v1.0, 2017-5-2
 
-These rules will be automatically handled by the link:../code-style/README.adoc[NerderyAndroid] codestyle.
-
 == Project structure
 
 New projects should follow the Android Gradle project structure that is defined
@@ -180,6 +178,8 @@ Resource files in the values folder should be __plural__, e.g. `strings.xml`,
 
 
 == Java language rules
+
+These rules will be automatically applied by the link:../code-style/README.adoc[NerderyAndroid] codestyle.
 
 === Don't ignore exceptions
 
@@ -454,7 +454,7 @@ import rx.functions.Action0;
 import rx.subjects.Subject;
 
 import static android.view.View.VISIBLE;
-import static android.view.View.GONE; 
+import static android.view.View.GONE;
 ----
 
 === Logging guidelines
