@@ -18,6 +18,4 @@ discipline.
 
 * link:standards/standards.adoc[standards/project-standards.adoc] - Nerdery Project Standards
 
-* link:standards/code-style.adoc[standards/code-style.adoc] - Nerdery Code Guidelines
-
-* link:standards/project-guidelines.adoc[standards/naming-guidelines] - Nerdery Naming Guidelines
+* link:standards/code-style.adoc[standards/code-style.adoc] - Nerdery File Naming Guidelines and Code Style Standards
