@@ -16,6 +16,6 @@ to your Android Studio or IntelliJ config directory. See
 Living documents which demonstrate best practices for The Nerdery's Android
 discipline.
 
-* [standards/project-standards.adoc](standards/standards.adoc) - Nerdery Project Standards
+* [standards/project-standards.adoc](standards/project-standards.adoc) - Nerdery Project Standards
 
 * [standards/code-style.adoc](standards/code-style.adoc) - Nerdery File Naming Guidelines and Code Style Standards
