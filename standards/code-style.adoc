@@ -323,7 +323,7 @@ correct order is:
 [source, java]
 ----
 public class MainActivity extends Activity {
-	//Order matches Activity lifecycle
+    //Order matches Activity lifecycle
     @Override public void onCreate() { }
     @Override public void onResume() { }
     @Override public void onPause() { }
@@ -382,7 +382,7 @@ https://github.com/JakeWharton/u2020/blob/master/src/internalDebug/java/com/jake
 
 |===
 
-Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a
+NOTE: Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a
 Bundle. However, because this is a quite common use of Bundles, we define a
 different prefix for them.
 
@@ -410,11 +410,11 @@ When an `Activity` or `Fragment` expects arguments, it should provide a
 `public static` method that facilitates the creation of the relevant `Intent`
 or `Fragment`.
 
-In the case of Activities the method is usually called `getStartIntent()`:
+In the case of Activities the method is usually called `newStartIntent()`:
 
 [source, java]
 ----
-public static Intent getStartIntent(Context context, User user) {
+public static Intent newStartIntent(Context context, User user) {
 	Intent intent = new Intent(context, ThisActivity.class);
 	intent.putParcelableExtra(EXTRA_USER, user);
 	return intent;
@@ -435,11 +435,9 @@ public static UserFragment newInstance(User user) {
 }
 ----
 
-__Note 1__: These methods should go at the top of the class before `onCreate()`.
-
-__Note 2__: If we provide the methods described above, the keys for extras
-and arguments should be `private` because there is not need for them to be
-exposed outside the class.
+NOTE:  These methods should go at the top of the class before `onCreate()`. If we provide
+the methods described above, the keys for extras and arguments should be `private` because
+there is not need for them to be exposed outside the class.
 
 === Line length limit
 
@@ -490,13 +488,13 @@ before the `.`
 
 [source, java]
 ----
-Picasso.with(context).load("http://ribot.co.uk/images/sexyjoe.jpg").into(imageView);
+Picasso.with(context).load("https://i.imgur.com/kG0deA5.jpg").into(imageView);
 ----
 
 [source, java]
 ----
 Picasso.with(context)
-        .load("http://ribot.co.uk/images/sexyjoe.jpg")
+        .load("https://i.imgur.com/kG0deA5.jpg")
         .into(imageView);
 ----
 
@@ -602,7 +600,7 @@ Image view example:
 [source, xml]
 ----
 <ImageView
-    android:id="@+id/profile_image"
+    android:id="@+id/my_account_profile_image"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     />
@@ -654,11 +652,13 @@ Unless the rest of resources, style names are written in __UpperCamelCase__.
 As a general rule you should try to group similar attributes together. A good
 way of ordering the most common attributes is:
 
-1. View Id
-2. Style
-3. Layout width and layout height
-4. Other layout attributes, sorted alphabetically
-5. Remaining attributes, sorted alphabetically
+. View Id
+. Layout width and layout height
+. Other layout attributes, sorted alphabetically
+. Remaining attributes, sorted alphabetically
+. Style/Theme
+
+TODO: example
 
 == Tests style rules
 
