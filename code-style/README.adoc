@@ -1,0 +1,18 @@
+= Android Code Styles
+v1.0, 2017-5-2
+
+Android Studio code style settings for The Nerdery's Android projects.
+
+== Installation
+
+ * On Unix, run the `install.sh` script. Windows users should use `install.bat` instead.
+ * Restart Android Studio if it is running.
+ * Open Android Studio -> Settings -> Editor -> Code Styles, change the scheme to `NerderyAndroid`
+
+== Credit
+
+Based on the Android code style customized by https://github.com/square/java-code-styles[Square].
+
+== License
+
+https://creativecommons.org/publicdomain/zero/1.0/legalcode[image:https://licensebuttons.net/p/zero/1.0/88x31.png[Public Domain]]
