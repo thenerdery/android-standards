@@ -1,5 +1,4 @@
 = Android Code Styles
-v1.0, 2017-5-2
 
 Android Studio code style settings for The Nerdery's Android projects.
 
@@ -11,8 +10,5 @@ Android Studio code style settings for The Nerdery's Android projects.
 
 == Credit
 
-Based on the Android code style customized by https://github.com/square/java-code-styles[Square].
-
-== License
-
-https://creativecommons.org/publicdomain/zero/1.0/legalcode[image:https://licensebuttons.net/p/zero/1.0/88x31.png[Public Domain]]
+Based on the Android code style customized by
+https://github.com/square/java-code-styles[Square].

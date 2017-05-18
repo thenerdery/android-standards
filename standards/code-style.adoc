@@ -1,6 +1,5 @@
-:sectnums:
 = Code Guidelines
-v1.0, 2017-5-2
+include::include.adoc[]
 
 == Project structure
 
