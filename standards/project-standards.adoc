@@ -185,25 +185,24 @@ case by case basis to see if they fit for the project.
 
 All Android Projects at The Nerdery MUST use CI.
 https://dashboard.buddybuild.com[Buddy Build] is a quick and
-a convenient way to set these up with our BitBucket Server.
+convenient way to set this up with our BitBucket Server.
 
 == Setting Up Buddy Build
 
 . Create a ticket to http://nrdry.com/sisreq[SIS] to allow
-Buddy Build to see your project. Buddy build
-can not see projects by default to ensure our clients privacy. Projects with
-specific security requirements may not be able to use Buddy Build. Check
-with your project lead or project manager to ensure that you may use Buddy
-Build.
-. While you are waiting for your project to be exposed toBuddy Build follow
+Buddybuild to see your project. Buddybuild
+can not see projects by default to ensure our client's privacy. Projects with
+specific security requirements may not be able to use Buddybuild. Check
+with your project lead or project manager to ensure that you may use Buddybuild.
+. While you are waiting for your project to be exposed to Buddybuild follow
 these directions to get your
 http://docs.buddybuild.com/docs/connect-with-bitbucket-server[BitBucket Account integrated]
-with Buddy Build.
-. Once your project can be seen by Buddy Build, follow
-http://docs.buddybuild.com/docs/selecting-an-app[these sets] to get
-your project setup and built in buddy build.
+with Buddybuild.
+. Once your project is visible to Buddybuild, follow
+http://docs.buddybuild.com/docs/selecting-an-app[these steps] to get
+your project setup and building.
 
-NOTE: It is RECOMMENDED to let Buddy Build handle the building of your release
+NOTE: It is RECOMMENDED to let Buddybuild handle the building of your release
 APKs and managing version numbers. This avoids confusion and ensures a single
 place where every build will be built in the exact same way.
 
@@ -221,6 +220,6 @@ in legacy projects when the legacy project does not have a logging alternative
 to logcat.
 
 Release builds MUST NOT log to logcat. This is a security concern as well as a
-performance issue. Logs SHOULD instead be sent to crashlytics, google analytics,
-firebase, loggy, or some other comparable cloud logging option where they can
+performance issue. Logs SHOULD instead be sent to Crashlytics, Google Analytics,
+Firebase, Loggy, or some other comparable cloud logging option where they can
 be reviewed and used to debug issues.
