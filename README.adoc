@@ -14,7 +14,7 @@ link:code-style/README.adoc[README] for more info.
 == standards
 
 Living documents which demonstrate best practices for The Nerdery's Android
-discipline. See them link:standards/index.adoc[here]
+discipline. See them link:standards/index.adoc[here].
 
 == License
 
