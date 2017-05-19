@@ -184,10 +184,10 @@ case by case basis to see if they fit for the project.
 = Continuous Integration
 
 All Android Projects at The Nerdery MUST use CI.
-https://dashboard.buddybuild.com[Buddy Build] is a quick and
+https://dashboard.buddybuild.com[Buddybuild] is a quick and
 convenient way to set this up with our BitBucket Server.
 
-== Setting Up Buddy Build
+== Setting Up Buddybuild
 
 . Create a ticket to http://nrdry.com/sisreq[SIS] to allow
 Buddybuild to see your project. Buddybuild
