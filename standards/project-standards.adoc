@@ -22,18 +22,17 @@ that can be listed under a client in BitBucket.
 
 == Branching
 
-The **master** branch is where the most up to date work is held. In the past, a develop
-branch had been used, but this has shown to cause confusion and many times
-resulted in extra work.
+Android projects will use git-flow style of branching and merging. Checkout
+https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow[Atlassian's Documentation]
+and this http://nvie.com/posts/a-successful-git-branching-model/[helpful guide]
+for more information. The default branch in Bitbucket MUST be set to develop
+to avoid confusion on which branch to work off of.
 
-All work for a project MUST be completed on a separate branch. The branch SHALL
-be named something descriptive about the work being done in that branch.
-
-To get the branch merged into the master branch a pull request SHALL be created
-through the BitBucket UI and be reviewed by at least one other developer. The
-reviewer SHOULD be the lead developer unless the lead developer delegates this
-task out to other team members. Consult with your lead for guidance on how
-they would like the review process to go.
+To get a feature or hotfix branch merged into the develop branch a pull
+request SHALL be created through the BitBucket UI and be reviewed by at least
+one other developer. The reviewer SHOULD be the lead developer unless the
+lead developer delegates this task out to other team members. Consult with your
+lead for guidance on how they would like the review process to go.
 
 In addition to having a review, the branch MUST pass a merge build from
 <<Continuous Integration>>. This is a build that confirms that the code once
@@ -42,13 +41,12 @@ merged into master will not break the build.
 == Forking
 
 Although not required, it is RECOMMENDED to fork repositories under your user
-account. This helps prevent clutter and reduces work for other developers trying
-to always figure out what branches can and should be deleted. Under your own
-fork, you are in charge of all the branches and can delete and save them as you
-see fit.
+account. This prevents clutter and reduces the work of figuring out which
+branches can and should be deleted. Under your own fork, you are in charge of
+all the branches and can delete and save them as you see fit.
 
 IMPORTANT: If using a fork you MUST set the 'Repository Permissions' to allow
-the production group to read. This allows any developer to access and see what
+the *Production Group* to read. This allows any developer to access and see what
 you are working on. Just in case you forget to create a PR before you go on
 vacation.
 
@@ -68,10 +66,11 @@ git tag -a v1.0.0 # -a is not required but RECOMMENDED
 git push origin v1.0.0
 ```
 
-It is RECOMMENDED that before creating a release, a release branch is created,
+It is REQUIRED that before creating a release, a release branch is made,
 so that bug fixes can be merged into the release branch while new features can
-be included in master. The release branch name SHOULD be
-`release-{major}.{minor}.{patch}`
+be included in master. The release branch name MUST be in the following form,
+`release-{major}.{minor}.{patch}`. The release branch SHOULD be merged into
+`master` once the code has been pushed to the play store.
 
 == Commit History
 
