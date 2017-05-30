@@ -792,6 +792,9 @@ For example:
 | `TextView`
 | `_text`
 
+| `EditText`
+| `_input`
+
 | `ImageView`
 | `_image`
 
