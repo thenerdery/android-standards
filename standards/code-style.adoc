@@ -350,9 +350,10 @@ the parent class's method.
 
 * `@SuppressWarnings`: The `@SuppressWarnings` annotation should only be used
 under circumstances where it is impossible to eliminate a warning. If a warning
-passes this "impossible to eliminate" test, the ``@SuppressWarnings` annotation
-must be used, so as to ensure that all warnings reflect actual problems in
-the code.
+passes this "impossible to eliminate" test, the `@SuppressWarnings` annotation 
+must be used, so as to ensure that all warnings reflect actual problems in the
+code. We recommend that you leave a short comment letting future developers
+know why you're needing to suppress that particular warning.
 
 More information about annotation guidelines can be found
 http://source.android.com/source/code-style.html=use-standard-java-annotations[here].
