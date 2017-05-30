@@ -28,6 +28,9 @@ do
     mkdir -p $i/options
     cp -frv "$CONFIGS/options"/* $i/options
 
+    # Install file templates
+    mkdir -p $i/fileTemplates/includes
+    cp -fv "$CONFIGS/fileTemplates/includes/File Header.java" $i/fileTemplates/includes
   fi
 done
 
