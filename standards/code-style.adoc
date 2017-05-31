@@ -201,7 +201,7 @@ creates mines in your code for someone else to trip over some day. You must
 handle every Exception in your code in some principled way. The specific
 handling varies depending on the case. (https://source.android.com/source/code-style.html[Android code style guidelines])
 
-See alternatives https://source.android.com/source/code-style.html=dont-ignore-exceptions[here].
+See alternatives https://source.android.com/source/code-style#dont-ignore-exceptions[here].
 
 === Don't catch a single, generic Exception
 
@@ -220,7 +220,7 @@ try {
 ----
 
 See the reason why and some alternatives
-https://source.android.com/source/code-style.html=dont-catch-generic-exception[here].
+https://source.android.com/source/code-style.html#dont-catch-generic-exception[here].
 
 === Don't use finalizers
 
@@ -230,7 +230,12 @@ what you need from a finalizer with good exception handling. If you absolutely
 need it, define a `close()` method (or the like) and document exactly when that
 method needs to be called. See `InputStream` for an example. In this case it is
 appropriate but not required to print a short log message from the finalizer,
-as long as it is not expected to flood the logs._ (https://source.android.com/source/code-style.html=dont-use-finalizers[Android code style guidelines])
+as long as it is not expected to flood the logs._
+(https://source.android.com/source/code-style.html#dont-use-finalizers[Android code style guidelines])
+
+TIP: Don't do it. If you absolutely must, first read and understand Effective
+Java Item 7, "Avoid Finalizers," very carefully, and then don't do it.
+https://google.github.io/styleguide/javaguide.html#s6.4-finalizers[Google Java Style Guide]
 
 == Java style rules
 
@@ -318,7 +323,7 @@ class MyClass {
 }
 ----
 
-Braces around the statements are required.
+Braces around statements are required.
 
 [source, java]
 ----
@@ -339,24 +344,28 @@ if (condition)
 
 ==== Annotations practices
 
-According to the Android code style guide, the standard practices for some of
-the predefined annotations in Java are:
+* @Deprecated: The @Deprecated annotation must be used whenever the use of the
+annotated element is discouraged. If you use the @Deprecated annotation, you
+must also have a comment naming an alternate implementation. In addition,
+remember that a @Deprecated method is still supposed to work.
 
-* `@Override`: The `@Override` annotation __must be used__ whenever a method
-overrides the declaration or implementation from a super-class. For example,
-if you use the `@inheritdocs` Javadoc tag, and derive from a class
-(not an interface), you must also annotate that the method `@Overrides`
-the parent class's method.
+* @Override: The @Override annotation must be used whenever a method overrides
+the declaration or implementation from a super-class.
 
-* `@SuppressWarnings`: The `@SuppressWarnings` annotation should only be used
-under circumstances where it is impossible to eliminate a warning. If a warning
-passes this "impossible to eliminate" test, the `@SuppressWarnings` annotation 
-must be used, so as to ensure that all warnings reflect actual problems in the
-code. We recommend that you leave a short comment letting future developers
-know why you're needing to suppress that particular warning.
+* @SuppressWarnings: The @SuppressWarnings annotation should be used only under
+circumstances where it is impossible to eliminate a warning. If a warning
+passes this "impossible to eliminate" test, the @SuppressWarnings annotation
+must be used, so as to ensure that all warnings reflect actual problems in the code.
+When a @SuppressWarnings annotation is necessary, it must be prefixed with a
+comment that explains the "impossible to eliminate" condition. This will
+normally identify an offending class that has an awkward interface. For example:
 
-More information about annotation guidelines can be found
-http://source.android.com/source/code-style.html=use-standard-java-annotations[here].
+[source, java]
+----
+// The third-party class com.third.useful.Utility.rotate() needs generics
+@SuppressWarnings("generic-cast")
+List<String> blix = Utility.rotate(blax);
+----
 
 ==== Annotations style
 
@@ -377,14 +386,27 @@ public class MySingleAnnotatedClass { }
 public class MyAnnotatedClass { }
 ----
 
+NOTE: Single annotations on methods may be inline with the method declaration.
+This is especially helpful when inlining callbacks.
+
+[source, java]
+----
+new MyCallBack() {
+    @Override public void callback() {
+      // implementation here
+    }
+}
+----
+
 __Fields__
 
 Annotations applying to fields should be listed __on the same line__, unless
 the line reaches the maximum line length.
 
-```java
+[source, java]
+----
 @Nullable @Mock DataManager dataManager;
-```
+----
 
 === Limit variable scope
 
@@ -397,7 +419,8 @@ variable._
 _Local variables should be declared at the point they are first used. Nearly
 every local variable declaration should contain an initializer. If you don't
 yet have enough information to initialize a variable sensibly, you should
-postpone the declaration until you do._ (https://source.android.com/source/code-style.html=limit-variable-scope[Android code style guidelines])
+postpone the declaration until you do._
+(https://source.android.com/source/code-style.html#limit-variable-scope[Android code style guidelines])
 
 === Fully qualify imports
 
@@ -409,7 +432,7 @@ postpone the declaration until you do._ (https://source.android.com/source/code-
 
 |===
 
-See more info https://source.android.com/source/code-style.html=fully-qualify-imports[here].
+See more info https://source.android.com/source/code-style.html#fully-qualify-imports[here].
 
 === Order import statements
 
