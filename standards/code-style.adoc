@@ -875,7 +875,17 @@ below:
 
 |===
 
+Think of reusing string resources as you would think of reusing custom views.
+Make sure that the meaning/functionality is the same, or else duplicate the
+string (i.e. two different buttons with the same copy that do different
+things should have two different string resources) .
 
+Organize your strings.xml into sections that each have a header describing
+what part of the app it's for, such as <!-- Navigation Drawer --> or
+<!-- Profile -->.
+
+Be sure to mark strings that aren't intended for translation:
+ http://tools.android.com/recent/non-translatablestrings[Android Docs]
 
 ==== Styles and Themes
 
