@@ -580,10 +580,10 @@ Examples:
 [source, java]
 ----
 // Context always goes first
-public User loadUser(Context context, int userId);
+fun loadUser(context: Context, userId: Int): User
 
 // Callbacks always go last
-public void loadUserAsync(Context context, int userId, UserCallback callback);
+fun loadUserAsync(context: Context, userId: Int, callback: UserCallback)
 ----
 
 === String constants, naming, and values
@@ -624,16 +624,18 @@ different prefix for them.
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-// Note the value of the field is the same as the name to avoid duplication issues
-static final String PREF_EMAIL = "PREF_EMAIL";
-static final String BUNDLE_AGE = "BUNDLE_AGE";
-static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+companion object {
+    // Note the value of the field is the same as the name to avoid duplication issues
+    val PREF_EMAIL = "PREF_EMAIL"
+    val BUNDLE_AGE = "BUNDLE_AGE"
+    val ARGUMENT_USER_ID = "ARGUMENT_USER_ID"
 
-// Intent-related items use full package name as value
-static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
-static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
+    // Intent-related items use full package name as value
+    val EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME"
+    val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
+}
 ----
 
 === Arguments in Fragments and Activities
@@ -648,26 +650,28 @@ or `Fragment`.
 
 In the case of Activities the method is usually called `newStartIntent()`:
 
-[source, java]
+[source, kotlin]
 ----
-public static Intent newStartIntent(Context context, User user) {
-	Intent intent = new Intent(context, ThisActivity.class);
-	intent.putParcelableExtra(EXTRA_USER, user);
-	return intent;
+fun newStartIntent(context: Context, user: User): Intent {
+    val intent = Intent(context, ThisActivity::class.java)
+    intent.putParcelableExtra(EXTRA_USER, user)
+    return intent
 }
 ----
 
 For Fragments it is named `newInstance()` and handles the creation of the
 Fragment with the right arguments:
 
-[source, java]
+[source, kotlin]
 ----
-public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
+companion object {
+    fun newInstance(user: User) {
+        val fragment = UserFragment()
+        val args = Bundle();
+        args.putParcelable(ARGUMENT_USER, user)
+        fragment.arguments = args
+        return fragment
+    }
 }
 ----
 
@@ -722,16 +726,16 @@ When multiple methods are chained in the same line - for example when using
 Builders - every call to a method should go in its own line, breaking the line
 before the `.`
 
-[source, java]
+[source, kotlin]
 ----
-Picasso.with(context).load("https://i.imgur.com/kG0deA5.jpg").into(imageView);
+Picasso.with(context).load("https://i.imgur.com/kG0deA5.jpg").into(imageView)
 ----
 
-[source, java]
+[source, kotlin]
 ----
 Picasso.with(context)
         .load("https://i.imgur.com/kG0deA5.jpg")
-        .into(imageView);
+        .into(imageView)
 ----
 
 __Long parameters case__
@@ -739,39 +743,40 @@ __Long parameters case__
 When a method has many parameters or its parameters are very long, we should
 break the line after every comma `,`
 
-[source, java]
+[source, kotlin]
 ----
-loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, clickListener, "Title of the picture");
+loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, clickListener, "Title of the picture")
 ----
 
-[source, java]
+[source, kotlin]
 ----
 loadPicture(context,
         "https://i.imgur.com/kG0deA5.jpg",
         imageViewProfilePicture,
         clickListener,
-        "Title of the picture");
+        "Title of the picture")
 ----
 
 === RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 
-[source, java]
+[source, kotlin]
 ----
-public Observable<Location> syncLocations() {
+fun syncLocations(): Observable<Location> {
     return databaseManager.getAllLocations()
-            .concatMap(new Func1<Location, Observable<? extends Location>>() {
-                @Override public Observable<? extends Location> call(Location location) {
-                    return retrofitService.getLocation(location.id);
+            .concatMap(object : Func1<Location, Observable<out Location>>() {
+                fun call(location: Location): Observable<out Location> {
+                    return retrofitService.getLocation(location.id)
                 }
             })
-            .retry(new Func2<Integer, Throwable, Boolean>() {
-                @Override public Boolean call(Integer numRetries, Throwable throwable) {
-                    return throwable instanceof RetrofitError;
+            .retry(object : Func2<Int, Throwable, Boolean>() {
+                fun call(numRetries: Int?, throwable: Throwable): Boolean? {
+                    return throwable is RetrofitError
                 }
-            });
+            })
 }
+
 ----
 
 == XML style rules
