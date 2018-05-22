@@ -1,6 +1,13 @@
 = Code Guidelines
 include::include.adoc[]
 
+== Kotlin Style Guides
+The following style guides, in order, should be followed:
+
+. Nerdery Code Guidelines
+. https://android.github.io/kotlin-guides/style.html[Android Kotlin Style Guide]
+. https://kotlinlang.org/docs/reference/coding-conventions.html[Kotlin Coding Conventions]
+
 == Project structure
 
 New projects should follow the Android Gradle project structure that is defined
