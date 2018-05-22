@@ -183,7 +183,7 @@ Resource files in the values folder should be __plural__, e.g. `strings.xml`,
 `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
 
-== Java language rules
+== Language rules
 
 These rules will be automatically applied by the link:../code-style/README.adoc[NerderyAndroid] codestyle.
 
@@ -191,12 +191,12 @@ These rules will be automatically applied by the link:../code-style/README.adoc[
 
 You must never do the following:
 
-[source, java]
+[source, kotlin]
 ----
-void setServerPort(String value) {
+fun setServerPort(value: String) {
     try {
-        serverPort = Integer.parseInt(value);
-    } catch (NumberFormatException e) {
+        serverPort = Integer.parseInt(value)
+    } catch (e: NumberFormatException) {
         // ...
     }
 }
@@ -214,15 +214,15 @@ See alternatives https://source.android.com/source/code-style#dont-ignore-except
 
 You should not do this:
 
-[source, java]
+[source, kotlin]
 ----
 try {
-    someComplicatedIOFunction();        // may throw IOException
-    someComplicatedParsingFunction();   // may throw ParsingException
-    someComplicatedSecurityFunction();  // may throw SecurityException
+    someComplicatedIOFunction()        // may throw IOException
+    someComplicatedParsingFunction()   // may throw ParsingException
+    someComplicatedSecurityFunction()  // may throw SecurityException
     // phew, made it all the way
-} catch (Exception e) {                 // I'll just catch all exceptions
-    handleError();                      // with one generic handler!
+} catch (e: Exception) {                 // I'll just catch all exceptions
+    handleError()                      // with one generic handler!
 }
 ----
 
@@ -260,15 +260,14 @@ non-static variables may occur.
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-public class MyClass {
-    public static final int SOME_CONSTANT = 42;
-    private static float sValue; // Contrived but you get the point.
-    private int value;
+class MyClass {
+    val value = 0
 
-    public int getValue() {
-        return value;
+    companion object {
+        val SOME_CONSTANT = 42
+        private val sValue = 0f // Contrived but you get the point.
     }
 }
 ----
@@ -296,29 +295,29 @@ public class MyClass {
 
 Use __4 space__ indents for blocks:
 
-[source, java]
+[source, kotlin]
 ----
 if (x == 1) {
-    x++;
+    x++
 }
 ----
 
 Use __8 space__ indents for line wraps:
 
-[source, java]
+[source, kotlin]
 ----
-Instrument i =
-        someLongExpression(that, wouldNotFit, on, one, line);
+val i: Instrument =
+        someLongExpression(that, wouldNotFit, on, one, line)
 ----
 
 === Use standard brace style
 
 Braces go on the same line as the code before them.
 
-[source, java]
+[source, kotlin]
 ----
 class MyClass {
-    int func() {
+    fun func(): Int {
         if (something) {
             // ...
         } else if (somethingElse) {
@@ -332,19 +331,19 @@ class MyClass {
 
 Braces around statements are required.
 
-[source, java]
+[source, kotlin]
 ----
 if (condition) {
-    body();
+    body()
 }
 ----
 
 This is __bad__:
 
-[source, java]
+[source, kotlin]
 ----
 if (condition)
-    body();  // bad!
+    body()  // bad!
 ----
 
 === Annotations
@@ -457,33 +456,33 @@ The ordering of import statements is:
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.view.Menu;
-import android.view.View;
+import android.content.Intent
+import android.os.Bundle
+import android.support.annotation.Nullable
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.ActionBar
+import android.view.Menu
+import android.view.View
 
-import com.fernandocejas.arrow.optional.Optional;
-import com.squareup.moshi.Moshi;
+import com.fernandocejas.arrow.optional.Optional
+import com.squareup.moshi.Moshi
 
-import net.domain.android.project.R;
+import net.domain.android.project.R
 
-import java.util.List;
+import java.util.List
 
-import javax.inject.Inject;
+import javax.inject.Inject
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import hugo.weaving.DebugLog;
-import rx.functions.Action0;
-import rx.subjects.Subject;
+import butterknife.BindView
+import butterknife.ButterKnife
+import hugo.weaving.DebugLog
+import rx.functions.Action0
+import rx.subjects.Subject
 
-import static android.view.View.VISIBLE;
-import static android.view.View.GONE;
+import static android.view.View.VISIBLE
+import static android.view.View.GONE
 ----
 
 === Logging guidelines
@@ -527,26 +526,26 @@ recommendable to use the following order:
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-public class MainActivity extends Activity {
+class MainActivity : Activity() {
 
-    private String title;
-    private TextView textViewTitle;
+    private var title: String? = null
+    private val textViewTitle: TextView? = null
 
-    @Override public void onCreate() {
+    fun onCreate() {
         // ...
     }
 
-    public void setTitle(String title) {
-    	this.title = title;
+    fun setTitle(title: String) {
+        this.title = title
     }
 
-    private void setUpView() {
+    private fun setUpView() {
         // ...
     }
 
-    static class AnInnerClass {
+    internal class AnInnerClass {
         // ...
     }
 }
@@ -558,14 +557,13 @@ __match the component's lifecycle__. For example, if you have an Activity that
 implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the
 correct order is:
 
-[source, java]
+[source, kotlin]
 ----
-public class MainActivity extends Activity {
+class MainActivity : Activity() {
     //Order matches Activity lifecycle
-    @Override public void onCreate() { }
-    @Override public void onResume() { }
-    @Override public void onPause() { }
-    @Override public void onDestroy() { }
+    public override fun onResume() {}
+    public override fun onPause() {}
+    public override fun onDestroy() {}
 }
 ----
 
