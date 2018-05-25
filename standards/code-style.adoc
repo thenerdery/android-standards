@@ -767,8 +767,8 @@ Rx chains of operators require line-wrapping. Every operator must go in a new li
 ----
 fun syncLocations(): Observable<Location> {
     return databaseManager.getAllLocations()
-            .concatMap({ retrofitService.getLocation(it.id) })
-            .retry({ throwable is RetrofitError })
+            .concatMap { retrofitService.getLocation(it.id) }
+            .retry { throwable is RetrofitError }
 }
 
 ----
