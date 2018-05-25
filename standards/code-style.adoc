@@ -652,10 +652,12 @@ In the case of Activities the method is usually called `newStartIntent()`:
 
 [source, kotlin]
 ----
-fun newStartIntent(context: Context, user: User): Intent {
-    val intent = Intent(context, ThisActivity::class.java)
-    intent.putParcelableExtra(EXTRA_USER, user)
-    return intent
+companion object {
+	fun newStartIntent(context: Context, user: User): Intent {
+	    val intent = Intent(context, ThisActivity::class.java)
+	    intent.putParcelableExtra(EXTRA_USER, user)
+	    return intent
+	}
 }
 ----
 
@@ -765,16 +767,8 @@ Rx chains of operators require line-wrapping. Every operator must go in a new li
 ----
 fun syncLocations(): Observable<Location> {
     return databaseManager.getAllLocations()
-            .concatMap(object : Func1<Location, Observable<out Location>>() {
-                fun call(location: Location): Observable<out Location> {
-                    return retrofitService.getLocation(location.id)
-                }
-            })
-            .retry(object : Func2<Int, Throwable, Boolean>() {
-                fun call(numRetries: Int?, throwable: Throwable): Boolean? {
-                    return throwable is RetrofitError
-                }
-            })
+            .concatMap({ retrofitService.getLocation(it.id) })
+            .retry({ throwable is RetrofitError })
 }
 
 ----
