@@ -1,6 +1,13 @@
 = Code Guidelines
 include::include.adoc[]
 
+== Kotlin Style Guides
+The following style guides, in order, should be followed:
+
+. Nerdery Code Guidelines
+. https://android.github.io/kotlin-guides/style.html[Android Kotlin Style Guide]
+. https://kotlinlang.org/docs/reference/coding-conventions.html[Kotlin Coding Conventions]
+
 == Project structure
 
 New projects should follow the Android Gradle project structure that is defined
@@ -176,7 +183,7 @@ Resource files in the values folder should be __plural__, e.g. `strings.xml`,
 `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
 
-== Java language rules
+== Language rules
 
 These rules will be automatically applied by the link:../code-style/README.adoc[NerderyAndroid] codestyle.
 
@@ -184,12 +191,12 @@ These rules will be automatically applied by the link:../code-style/README.adoc[
 
 You must never do the following:
 
-[source, java]
+[source, kotlin]
 ----
-void setServerPort(String value) {
+fun setServerPort(value: String) {
     try {
-        serverPort = Integer.parseInt(value);
-    } catch (NumberFormatException e) {
+        serverPort = Integer.parseInt(value)
+    } catch (e: NumberFormatException) {
         // ...
     }
 }
@@ -207,15 +214,15 @@ See alternatives https://source.android.com/source/code-style#dont-ignore-except
 
 You should not do this:
 
-[source, java]
+[source, kotlin]
 ----
 try {
-    someComplicatedIOFunction();        // may throw IOException
-    someComplicatedParsingFunction();   // may throw ParsingException
-    someComplicatedSecurityFunction();  // may throw SecurityException
+    someComplicatedIOFunction()        // may throw IOException
+    someComplicatedParsingFunction()   // may throw ParsingException
+    someComplicatedSecurityFunction()  // may throw SecurityException
     // phew, made it all the way
-} catch (Exception e) {                 // I'll just catch all exceptions
-    handleError();                      // with one generic handler!
+} catch (e: Exception) {                 // I'll just catch all exceptions
+    handleError()                      // with one generic handler!
 }
 ----
 
@@ -253,15 +260,14 @@ non-static variables may occur.
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-public class MyClass {
-    public static final int SOME_CONSTANT = 42;
-    private static float sValue; // Contrived but you get the point.
-    private int value;
+class MyClass {
+    val value = 0
 
-    public int getValue() {
-        return value;
+    companion object {
+        const val SOME_CONSTANT = 42
+        private val sValue = 0f // Contrived but you get the point.
     }
 }
 ----
@@ -289,29 +295,29 @@ public class MyClass {
 
 Use __4 space__ indents for blocks:
 
-[source, java]
+[source, kotlin]
 ----
 if (x == 1) {
-    x++;
+    x++
 }
 ----
 
 Use __8 space__ indents for line wraps:
 
-[source, java]
+[source, kotlin]
 ----
-Instrument i =
-        someLongExpression(that, wouldNotFit, on, one, line);
+val i: Instrument =
+        someLongExpression(that, wouldNotFit, on, one, line)
 ----
 
 === Use standard brace style
 
 Braces go on the same line as the code before them.
 
-[source, java]
+[source, kotlin]
 ----
 class MyClass {
-    int func() {
+    fun func(): Int {
         if (something) {
             // ...
         } else if (somethingElse) {
@@ -325,19 +331,19 @@ class MyClass {
 
 Braces around statements are required.
 
-[source, java]
+[source, kotlin]
 ----
 if (condition) {
-    body();
+    body()
 }
 ----
 
 This is __bad__:
 
-[source, java]
+[source, kotlin]
 ----
 if (condition)
-    body();  // bad!
+    body()  // bad!
 ----
 
 === Annotations
@@ -450,33 +456,33 @@ The ordering of import statements is:
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.view.Menu;
-import android.view.View;
+import android.content.Intent
+import android.os.Bundle
+import android.support.annotation.Nullable
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.ActionBar
+import android.view.Menu
+import android.view.View
 
-import com.fernandocejas.arrow.optional.Optional;
-import com.squareup.moshi.Moshi;
+import com.fernandocejas.arrow.optional.Optional
+import com.squareup.moshi.Moshi
 
-import net.domain.android.project.R;
+import net.domain.android.project.R
 
-import java.util.List;
+import java.util.List
 
-import javax.inject.Inject;
+import javax.inject.Inject
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import hugo.weaving.DebugLog;
-import rx.functions.Action0;
-import rx.subjects.Subject;
+import butterknife.BindView
+import butterknife.ButterKnife
+import hugo.weaving.DebugLog
+import rx.functions.Action0
+import rx.subjects.Subject
 
-import static android.view.View.VISIBLE;
-import static android.view.View.GONE;
+import static android.view.View.VISIBLE
+import static android.view.View.GONE
 ----
 
 === Logging guidelines
@@ -520,26 +526,26 @@ recommendable to use the following order:
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-public class MainActivity extends Activity {
+class MainActivity : Activity() {
 
-    private String title;
-    private TextView textViewTitle;
+    private var title: String? = null
+    private val textViewTitle: TextView? = null
 
-    @Override public void onCreate() {
+    override fun onCreate() {
         // ...
     }
 
-    public void setTitle(String title) {
-    	this.title = title;
+    fun setTitle(title: String) {
+        this.title = title
     }
 
-    private void setUpView() {
+    private fun setUpView() {
         // ...
     }
 
-    static class AnInnerClass {
+    inner class AnInnerClass {
         // ...
     }
 }
@@ -551,14 +557,14 @@ __match the component's lifecycle__. For example, if you have an Activity that
 implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the
 correct order is:
 
-[source, java]
+[source, kotlin]
 ----
-public class MainActivity extends Activity {
+class MainActivity : Activity() {
     //Order matches Activity lifecycle
-    @Override public void onCreate() { }
-    @Override public void onResume() { }
-    @Override public void onPause() { }
-    @Override public void onDestroy() { }
+    public override fun onCreate(savedInstanceState: Bundle?) {}
+    public override fun onResume() {}
+    public override fun onPause() {}
+    public override fun onDestroy() {}
 }
 ----
 
@@ -575,10 +581,10 @@ Examples:
 [source, java]
 ----
 // Context always goes first
-public User loadUser(Context context, int userId);
+fun loadUser(context: Context, userId: Int): User
 
 // Callbacks always go last
-public void loadUserAsync(Context context, int userId, UserCallback callback);
+fun loadUserAsync(context: Context, userId: Int, callback: UserCallback)
 ----
 
 === String constants, naming, and values
@@ -619,16 +625,18 @@ different prefix for them.
 
 Example:
 
-[source, java]
+[source, kotlin]
 ----
-// Note the value of the field is the same as the name to avoid duplication issues
-static final String PREF_EMAIL = "PREF_EMAIL";
-static final String BUNDLE_AGE = "BUNDLE_AGE";
-static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
+companion object {
+    // Note the value of the field is the same as the name to avoid duplication issues
+    const val PREF_EMAIL = "PREF_EMAIL"
+    const val BUNDLE_AGE = "BUNDLE_AGE"
+    const val ARGUMENT_USER_ID = "ARGUMENT_USER_ID"
 
-// Intent-related items use full package name as value
-static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
-static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
+    // Intent-related items use full package name as value
+    const val EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME"
+    const val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
+}
 ----
 
 === Arguments in Fragments and Activities
@@ -643,26 +651,28 @@ or `Fragment`.
 
 In the case of Activities the method is usually called `newStartIntent()`:
 
-[source, java]
+[source, kotlin]
 ----
-public static Intent newStartIntent(Context context, User user) {
-	Intent intent = new Intent(context, ThisActivity.class);
-	intent.putParcelableExtra(EXTRA_USER, user);
-	return intent;
+companion object {
+    fun newStartIntent(context: Context, user: User): Intent {
+        return Intent(context, ThisActivity::class.java).apply {
+            putExtra("gdgads", user)
+        }
+    }
 }
 ----
 
 For Fragments it is named `newInstance()` and handles the creation of the
 Fragment with the right arguments:
 
-[source, java]
+[source, kotlin]
 ----
-public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
+companion object {
+    fun newInstance(user: User) = UserFragment().apply {
+        arguments = Bundle().apply {
+            putParcelable(ARGUMENT_USER, user)
+        }
+    }
 }
 ----
 
@@ -717,16 +727,16 @@ When multiple methods are chained in the same line - for example when using
 Builders - every call to a method should go in its own line, breaking the line
 before the `.`
 
-[source, java]
+[source, kotlin]
 ----
-Picasso.with(context).load("https://i.imgur.com/kG0deA5.jpg").into(imageView);
+Picasso.with(context).load("https://i.imgur.com/kG0deA5.jpg").into(imageView)
 ----
 
-[source, java]
+[source, kotlin]
 ----
 Picasso.with(context)
         .load("https://i.imgur.com/kG0deA5.jpg")
-        .into(imageView);
+        .into(imageView)
 ----
 
 __Long parameters case__
@@ -734,39 +744,32 @@ __Long parameters case__
 When a method has many parameters or its parameters are very long, we should
 break the line after every comma `,`
 
-[source, java]
+[source, kotlin]
 ----
-loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, clickListener, "Title of the picture");
+loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, "Title of the picture", clickListener)
 ----
 
-[source, java]
+[source, kotlin]
 ----
 loadPicture(context,
         "https://i.imgur.com/kG0deA5.jpg",
         imageViewProfilePicture,
-        clickListener,
-        "Title of the picture");
+        "Title of the picture",
+        clickListener)
 ----
 
 === RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 
-[source, java]
+[source, kotlin]
 ----
-public Observable<Location> syncLocations() {
+fun syncLocations(): Observable<Location> {
     return databaseManager.getAllLocations()
-            .concatMap(new Func1<Location, Observable<? extends Location>>() {
-                @Override public Observable<? extends Location> call(Location location) {
-                    return retrofitService.getLocation(location.id);
-                }
-            })
-            .retry(new Func2<Integer, Throwable, Boolean>() {
-                @Override public Boolean call(Integer numRetries, Throwable throwable) {
-                    return throwable instanceof RetrofitError;
-                }
-            });
+            .concatMap { retrofitService.getLocation(it.id) }
+            .retry { throwable is RetrofitError }
 }
+
 ----
 
 == XML style rules
