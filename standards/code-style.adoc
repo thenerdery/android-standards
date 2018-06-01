@@ -266,8 +266,8 @@ class MyClass {
     val value = 0
 
     companion object {
-        val SOME_CONSTANT = 42
-        private val sValue = 0f // Contrived but you get the point.
+        const val SOME_CONSTANT = 42
+        private const val sValue = 0f // Contrived but you get the point.
     }
 }
 ----
@@ -533,7 +533,7 @@ class MainActivity : Activity() {
     private var title: String? = null
     private val textViewTitle: TextView? = null
 
-    fun onCreate() {
+    override fun onCreate() {
         // ...
     }
 
@@ -545,7 +545,7 @@ class MainActivity : Activity() {
         // ...
     }
 
-    internal class AnInnerClass {
+    inner class AnInnerClass {
         // ...
     }
 }
@@ -561,6 +561,7 @@ correct order is:
 ----
 class MainActivity : Activity() {
     //Order matches Activity lifecycle
+    public override fun onCreate(savedInstanceState: Bundle?) {}
     public override fun onResume() {}
     public override fun onPause() {}
     public override fun onDestroy() {}
@@ -628,13 +629,13 @@ Example:
 ----
 companion object {
     // Note the value of the field is the same as the name to avoid duplication issues
-    val PREF_EMAIL = "PREF_EMAIL"
-    val BUNDLE_AGE = "BUNDLE_AGE"
-    val ARGUMENT_USER_ID = "ARGUMENT_USER_ID"
+    const val PREF_EMAIL = "PREF_EMAIL"
+    const val BUNDLE_AGE = "BUNDLE_AGE"
+    const val ARGUMENT_USER_ID = "ARGUMENT_USER_ID"
 
     // Intent-related items use full package name as value
-    val EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME"
-    val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
+    const val EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME"
+    const val ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER"
 }
 ----
 
@@ -653,11 +654,11 @@ In the case of Activities the method is usually called `newStartIntent()`:
 [source, kotlin]
 ----
 companion object {
-	fun newStartIntent(context: Context, user: User): Intent {
-	    val intent = Intent(context, ThisActivity::class.java)
-	    intent.putParcelableExtra(EXTRA_USER, user)
-	    return intent
-	}
+    fun newStartIntent(context: Context, user: User): Intent {
+        return Intent(context, ThisActivity::class.java).apply {
+            putExtra("gdgads", user)
+        }
+    }
 }
 ----
 
@@ -667,12 +668,10 @@ Fragment with the right arguments:
 [source, kotlin]
 ----
 companion object {
-    fun newInstance(user: User) {
-        val fragment = UserFragment()
-        val args = Bundle();
-        args.putParcelable(ARGUMENT_USER, user)
-        fragment.arguments = args
-        return fragment
+    fun newInstance(user: User) = UserFragment().apply {
+        arguments = Bundle().apply {
+            putParcelable(ARGUMENT_USER, user)
+        }
     }
 }
 ----
@@ -747,7 +746,7 @@ break the line after every comma `,`
 
 [source, kotlin]
 ----
-loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, clickListener, "Title of the picture")
+loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture, "Title of the picture", clickListener)
 ----
 
 [source, kotlin]
@@ -755,8 +754,8 @@ loadPicture(context, "https://i.imgur.com/kG0deA5.jpg", imageViewProfilePicture,
 loadPicture(context,
         "https://i.imgur.com/kG0deA5.jpg",
         imageViewProfilePicture,
-        clickListener,
-        "Title of the picture")
+        "Title of the picture",
+        clickListener)
 ----
 
 === RxJava chains styling
