@@ -267,7 +267,7 @@ class MyClass {
 
     companion object {
         const val SOME_CONSTANT = 42
-        private const val sValue = 0f // Contrived but you get the point.
+        private val sValue = 0f // Contrived but you get the point.
     }
 }
 ----
