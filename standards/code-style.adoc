@@ -244,31 +244,32 @@ TIP: Don't do it. If you absolutely must, first read and understand Effective
 Java Item 7, "Avoid Finalizers," very carefully, and then don't do it.
 https://google.github.io/styleguide/javaguide.html#s6.4-finalizers[Google Java Style Guide]
 
-== Java style rules
+== Java/Kotlin style rules
 
 === Fields definition and naming
 
-Fields should be defined at the __top of the file__, be final when possible,
+Fields should be defined at the __top of the file__, be final/val when possible,
 private unless a constant (static final), and they should follow the
-naming rules listed below.
+naming rules listed below.  Companion objects should be placed above class fields when used in Kotlin classes.
 
 * Fields start with a lower case letter.
 * Do not use __m__ prefix.
 * __s__ prefix may be used in situation where collisions/confusion between other
 non-static variables may occur.
-* Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
+* Static final fields/companion object fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
 
 Example:
 
 [source, kotlin]
 ----
 class MyClass {
-    val value = 0
 
     companion object {
         const val SOME_CONSTANT = 42
         private val sValue = 0f // Contrived but you get the point.
     }
+
+    val value = 0
 }
 ----
 
@@ -353,10 +354,10 @@ if (condition)
 * @Deprecated: The @Deprecated annotation must be used whenever the use of the
 annotated element is discouraged. If you use the @Deprecated annotation, you
 must also have a comment naming an alternate implementation. In addition,
-remember that a @Deprecated method is still supposed to work.
+remember that a @Deprecated method is still supposed to work.  In Kotlin, the https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecated/index.html[ReplaceWith] attribute should be added to the annotation to aid in converting code to the recommended replacement. 
 
 * @Override: The @Override annotation must be used whenever a method overrides
-the declaration or implementation from a super-class.
+the declaration or implementation from a super-class.  In Kotlin, this is accomplished via the `override` keyword rather than an annotation.
 
 * @SuppressWarnings: The @SuppressWarnings annotation should be used only under
 circumstances where it is impossible to eliminate a warning. If a warning
