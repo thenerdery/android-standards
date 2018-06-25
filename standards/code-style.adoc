@@ -350,9 +350,9 @@ if (condition)
 
 Braces are not required for `when` branches and `if` statement bodies if they meet ALL
 the following conditions:
-- there are no `else if`/`else` branches
-- the conditional and the branch contain at most a single predicate
-- it fits on a single line
+. there are no `else if`/`else` branches
+. the conditional and the branch contain at most a single predicate
+. it fits on a single line
 
 These exceptions are ok:
 
