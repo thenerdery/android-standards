@@ -310,7 +310,7 @@ val i: Instrument =
         someLongExpression(that, wouldNotFit, on, one, line)
 ----
 
-=== Use standard brace style
+=== Brace style
 
 Braces go on the same line as the code before them.
 
@@ -329,7 +329,11 @@ class MyClass {
 }
 ----
 
-Braces around statements are required.
+==== Statements
+
+Braces around statements are required in most instances.
+
+Typical case:
 
 [source, kotlin]
 ----
@@ -338,12 +342,56 @@ if (condition) {
 }
 ----
 
-This is __bad__:
-
 [source, kotlin]
 ----
 if (condition)
     body()  // bad!
+----
+
+Braces are not required for `when` branches and `if` statement bodies if they meet ALL
+the following conditions:
+- there are no `else if`/`else` branches
+- the conditional and the branch contain at most a single predicate
+- it fits on a single line
+
+These exceptions are ok:
+
+[source, kotlin]
+----
+if (string.isEmpty()) return
+
+when (value) {
+    0 -> return
+    // …
+}
+----
+
+==== Expressions
+
+An `if`/`else` conditional that is used as an expression may omit braces only if the
+conditional and each branch of the expression contain at most a single predicate,
+and the entire expression fits on one line.
+
+[source, kotlin]
+----
+val value = if (string.isEmpty()) 0 else 1  // Okay
+----
+
+[source, kotlin]
+----
+val value = if (string.isEmpty())  // WRONG!
+                0
+            else
+                1
+----
+
+[source, kotlin]
+----
+val value = if (string.isEmpty()) { // Okay
+    0
+} else {
+    1
+}
 ----
 
 === Annotations
