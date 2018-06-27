@@ -345,26 +345,37 @@ if (condition) {
 [source, kotlin]
 ----
 if (condition)
-    body()  // bad!
+    body()  // WRONG!
 ----
 
-Braces are not required for `when` branches and `if` statement bodies if they meet ALL
+Braces are not required for `when` branches and `if` statement bodies if they meet BOTH
 the following conditions:
 
-. there are no `else if`/`else` branches
-. the conditional and the branch contain at most a single predicate
+. the conditional and the branch each contain at most a single predicate
 . it fits on a single line
 
-These exceptions are ok:
+For `if` statements, there is an additional condition that there be no `else if` or `else`
+branches.
 
 [source, kotlin]
 ----
+// Okay
 if (string.isEmpty()) return
 
+// Okay
 when (value) {
-    0 -> return
-    // …
+    0 -> doSpecificThing()
+    1 -> doAnotherSpecificThing()
+	else -> doGenericThing()
 }
+
+// WRONG
+if (string.isEmpty()) doEmptyThing() else doFullThing()
+
+// STILL WRONG!
+if (string.isEmpty()) doEmptyThing()
+else doFullThing()
+
 ----
 
 ==== Expressions
