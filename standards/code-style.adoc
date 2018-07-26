@@ -344,18 +344,18 @@ if (condition) {
 
 [source, kotlin]
 ----
-if (condition)
+if (condition1 && condition2)
     body()  // WRONG!
 ----
 
-Braces are not required for `when` branches and `if` statement bodies if they meet BOTH
-the following conditions:
+Occasionally, statements are simple enough that Braces may be omitted. This should only
+be done if the logic is unmistakable and doing so increases readability of the method.
+You may _consider_ omitting braces if the situation meets the following conditions:
 
 . the conditional and the branch each contain at most a single predicate
 . it fits on a single line
 
-For `if` statements, there is an additional condition that there be no `else if` or `else`
-branches.
+Remember that no one is going to complain about Braces being present.
 
 [source, kotlin]
 ----
@@ -366,13 +366,10 @@ if (string.isEmpty()) return
 when (value) {
     0 -> doSpecificThing()
     1 -> doAnotherSpecificThing()
-	else -> doGenericThing()
+    else -> doGenericThing()
 }
 
 // WRONG
-if (string.isEmpty()) doEmptyThing() else doFullThing()
-
-// STILL WRONG!
 if (string.isEmpty()) doEmptyThing()
 else doFullThing()
 
@@ -382,7 +379,8 @@ else doFullThing()
 
 An `if`/`else` conditional that is used as an expression may omit braces only if the
 conditional and each branch of the expression contain at most a single predicate,
-and the entire expression fits on one line.
+and the entire expression fits on one line. This is the Kotlin equivalent of the
+ternary operator. 
 
 [source, kotlin]
 ----
