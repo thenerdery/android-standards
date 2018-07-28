@@ -329,7 +329,7 @@ class MyClass {
 }
 ----
 
-==== Statements
+==== Braces on Statements
 
 Braces around statements are required in most instances.
 
@@ -348,14 +348,9 @@ if (condition1 && condition2)
     body()  // WRONG!
 ----
 
-Occasionally, statements are simple enough that Braces may be omitted. This should only
-be done if the logic is unmistakable and doing so increases readability of the method.
-You may _consider_ omitting braces if the situation meets the following conditions:
-
-. the conditional and the branch each contain at most a single predicate
-. it fits on a single line
-
-Remember that no one is going to complain about Braces being present.
+Occasionally, statements are simple enough that braces may be omitted. This should only
+be done if it increases readability of the method. You may consider omitting braces if
+the conditional has a single predicate and the whole statement fits on a single line.
 
 [source, kotlin]
 ----
@@ -375,9 +370,9 @@ else doFullThing()
 
 ----
 
-==== Expressions
+==== Braces in Expressions
 
-An `if`/`else` conditional that is used as an expression may omit braces only if the
+An `if`/`else` conditional that is used as an expression may omit braces if the
 conditional and each branch of the expression contain at most a single predicate,
 and the entire expression fits on one line. This is the Kotlin equivalent of the
 ternary operator. 
