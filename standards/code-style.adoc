@@ -311,7 +311,7 @@ val i: Instrument =
         someLongExpression(that, wouldNotFit, on, one, line)
 ----
 
-=== Use standard brace style
+=== Brace style
 
 Braces go on the same line as the code before them.
 
@@ -330,7 +330,11 @@ class MyClass {
 }
 ----
 
-Braces around statements are required.
+==== Braces on Statements
+
+Braces around statements are required in most instances.
+
+Typical case:
 
 [source, kotlin]
 ----
@@ -339,12 +343,61 @@ if (condition) {
 }
 ----
 
-This is __bad__:
+[source, kotlin]
+----
+if (condition1 && condition2)
+    body()  // WRONG!
+----
+
+Occasionally, statements are simple enough that braces may be omitted. This should only
+be done if it increases readability of the method. You may consider omitting braces if
+the conditional has a single predicate and the whole statement fits on a single line.
 
 [source, kotlin]
 ----
-if (condition)
-    body()  // bad!
+// Okay
+if (string.isEmpty()) return
+
+// Okay
+when (value) {
+    0 -> doSpecificThing()
+    1 -> doAnotherSpecificThing()
+    else -> doGenericThing()
+}
+
+// WRONG
+if (string.isEmpty()) doEmptyThing()
+else doFullThing()
+
+----
+
+==== Braces in Expressions
+
+An `if`/`else` conditional that is used as an expression may omit braces if the
+conditional and each branch of the expression contain at most a single predicate,
+and the entire expression fits on one line. This is the Kotlin equivalent of the
+ternary operator. 
+
+[source, kotlin]
+----
+val value = if (string.isEmpty()) 0 else 1  // Okay
+----
+
+[source, kotlin]
+----
+val value = if (string.isEmpty())  // WRONG!
+                0
+            else
+                1
+----
+
+[source, kotlin]
+----
+val value = if (string.isEmpty()) { // Okay
+    0
+} else {
+    1
+}
 ----
 
 === Annotations
