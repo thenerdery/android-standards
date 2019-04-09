@@ -72,6 +72,31 @@ be included in master. The release branch name MUST be in the following form,
 `release-{major}.{minor}.{patch}`. The release branch SHOULD be merged into
 `master` once the code has been pushed to the play store.
 
+== App Signing
+
+=== Debug
+
+Local testing of changes should be done via debug signing and deployment to a device or emulator.
+
+=== Release
+
+Apps should be signed with a release key for distribution to QA and pre-release tracks 
+for accurate testing of functionality and look & feel. Automatic builds should be set up to run 
+on a CI build server whenever a new commit is pushed to ensure passing builds. Communicate with 
+your project lead to ensure you have the access required for your role. 
+
+App updates should be deployed to the Play Store via the build server after the initial manual deployment. 
+The first deployment to the Play Store in any track (alpha, beta, internal, or production) must be done manually. 
+Following app updates can be done automatically by adding a Google Play Deploy step to a workflow. 
+
+A Service Account must be created for a build server to push updates directly to the Play Store. Instructions 
+can be found at https://developers.google.com/android-publisher/getting_started#creating_a_new_api_project 
+One Service account can be used across multiple uses, but creating a new Service Account for each use is 
+recommended so that an incident with one service account doesn't affect the other uses. The Release Manager 
+permission must be assigned to each Service Account after creation. Automatic build systems require a 
+certificate from the Service Account to provide proper authentication. These are usually json files. 
+These can be downloaded from the service account profile to be uploaded to the build system.
+
 == Commit History
 
 === Commit Message
