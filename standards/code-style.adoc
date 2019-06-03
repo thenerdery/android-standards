@@ -12,8 +12,6 @@ The following style guides, in order, should be followed:
 
 New projects should follow the Android Gradle project structure that is defined
 on the https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/user-guide#TOC-Project-Structure[Android Gradle plugin user guide].
-The https://github.com/rogues-dev/superglue[Super Glue Project Generator] is a
-great starting point.
 
 == File naming
 
