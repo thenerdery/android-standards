@@ -1,20 +1,14 @@
 = Android Standards Repo
 
-This is a single place for all our Android Standards to live and grow.
-To make a change or suggest an edit to these standards please fork this
-repository and create a pull request. To discuss possible changes please
-create an issue.
+This is a single place for all our Android Standards to live and grow.. These are living documents, which demonstrate best practices for Nerdery's Android discipline. 
 
-== code-style
+* <<project-standards.adoc#,Nerdery Project Standards>> - Information about setting up a project.  Includes branching strategies, release packaging and singing info, sample README templates, Testing information, and other information about general project configuration.
+* <<code-style.adoc#,Nerdery File Naming Guidelines and Code Style Standards>> - Naming, syntax and style guidelines for Java and Kotlin
+* <<code-style/README.adoc#,Code Style Templates>> - Style Templates and an install script for installing them in your Android Studio or IntelliJ configuration.
 
-Contains Android Studio code style templates and an install script for copying them
-to your Android Studio or IntelliJ config directory. See the
-link:code-style/README.adoc[README] for more info.
+== Suggest Changes
 
-== standards
-
-Living documents which demonstrate best practices for The Nerdery's Android
-discipline. See them link:standards/index.adoc[here].
+To make a change or suggest an edit to these standards please fork this repository and create a pull request. To discuss possible changes please create an issue.
 
 == License
 

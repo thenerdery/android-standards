@@ -12,7 +12,7 @@ https://www.ietf.org/rfc/rfc2119.txt[RFC 2119].
 
 == Location and Naming
 
-The Nerdery SHALL use git, specifically BitBucket Server for all projects unless otherwise
+Nerdery SHALL use git, specifically BitBucket Server for all projects unless otherwise
 requested by a client. Projects MUST be placed under the client they are for
 and project names MUST be written in the form of `mobile.{appName}.android`
 (all lower case) or if a library project `mobile.library.android.{libraryName}`.
@@ -207,39 +207,20 @@ case by case basis to see if they fit for the project.
 
 = Continuous Integration
 
-All Android Projects at The Nerdery MUST use CI.
-https://dashboard.buddybuild.com[Buddybuild] is a quick and
-convenient way to set this up with our BitBucket Server.
+All Android Projects at Nerdery MUST use CI.
 
-== Setting Up Buddybuild
-
-. Create a ticket to http://nrdry.com/sisreq[SIS] to allow
-Buddybuild to see your project. Buddybuild
-can not see projects by default to ensure our client's privacy. Projects with
-specific security requirements may not be able to use Buddybuild. Check
-with your project lead or project manager to ensure that you may use Buddybuild.
-. While you are waiting for your project to be exposed to Buddybuild follow
-these directions to get your
-http://docs.buddybuild.com/docs/connect-with-bitbucket-server[BitBucket Account integrated]
-with Buddybuild.
-. Once your project is visible to Buddybuild, follow
-http://docs.buddybuild.com/docs/selecting-an-app[these steps] to get
-your project setup and building.
-
-NOTE: It is RECOMMENDED to let Buddybuild handle the building of your release
-APKs and managing version numbers. This avoids confusion and ensures a single
-place where every build will be built in the exact same way.
+Information about configuring CI is on our Confluence page.
 
 = Logging
 
 Logging is very important in be able to quickly debug applications. For this
-the reason The Nerdery Android Developers have adopted
+the reason Nerdery Android Developers have adopted
 https://github.com/JakeWharton/timber[Timber] as the logger of choice.
 Timber allows to quickly log values to different streams instead of just logcat.
 Timber also allows for the type of logging to be easily switched from build
 type to build type.
 
-The Nerdery SHOULD use Timber in all new projects and is RECOMMENDED to be used
+Nerdery SHOULD use Timber in all new projects and is RECOMMENDED to be used
 in legacy projects when the legacy project does not have a logging alternative
 to logcat.
 
